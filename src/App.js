@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import './App.css';
 import React from 'react';
