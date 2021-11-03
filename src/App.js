@@ -17,7 +17,6 @@ function App() {
             <Route path="/allStudent" component={AllStudent} exact></Route>
             <Route path="/addStudent" component={AddStudent} exact></Route>
           </Switch>
-        
         </BrowserRouter>
     </div>
   );
