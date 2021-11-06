@@ -1,7 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
+import axios from "axios";
 
 export default function AllStudent() {
+  const [student, setStudent] = useState([]);
+
+  useEffect(() => {
+    getStudent();
+  }, [])
+
+  function getStudent(){
+    axios.get("API")
+    .then((res) => {
+      console.log(res.data);
+      setStudent(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
   return (
     <div className="container">
       <br />
