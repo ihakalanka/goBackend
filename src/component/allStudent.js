@@ -39,6 +39,14 @@ export default function AllStudent() {
             <td>Mark</td>
             <td>Otto</td>
             <td>@mdo</td>
+           
+          </tr>
+             <tr>
+            <td>2</td>
+            <td>new</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+           
           </tr>
         </tbody>
       </Table>
