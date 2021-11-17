@@ -10,7 +10,7 @@ export default function AllStudent() {
   }, [])
 
   function getStudent(){
-    axios.get("API")
+    axios.get("/api/getData")
     .then((res) => {
       console.log(res.data);
       setStudent(res.data);
