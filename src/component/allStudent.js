@@ -9,14 +9,13 @@ export default function AllStudent() {
     getStudent();
   }, []);
 
-<<<<<<< HEAD
-  function getStudent(){
-    axios.get("/api/getData")
-=======
+
+ 
+
   //get all student
   function getStudent() {
     axios
-      .get("API")
+      .get("/api/getData")
       .then((res) => {
         console.log(res.data);
         setStudent(res.data);
@@ -24,11 +23,11 @@ export default function AllStudent() {
       .catch((err) => {
         console.log(err);
       });
+  
   }
-
   function deleteStudent(id){
     axios.delete("API")
->>>>>>> 09a1b6eada5a2d8454cb1e242c8ea293be6b6adb
+  
     .then((res) => {
         alert("Student Deleted");
         getStudent();
@@ -54,10 +53,10 @@ export default function AllStudent() {
         <tbody>
           {student.map((student) => (
             <tr key={student.id}>
-              <td>{student.indexNumber}</td>
+              <td>{student.id}</td>
               <td>{student.name}</td>
               <td>{student.age}</td>
-              <td>{student.email}</td>
+              <td>{student.e_mail}</td>
               {/* <td>
                 <Button variant="info" type="edit" onClick={updateStudent}>
                   Edit
@@ -76,7 +75,7 @@ export default function AllStudent() {
                     }
                   }}
                 >
-                  Delete
+                  
                 </Button>
               </td>
             </tr>

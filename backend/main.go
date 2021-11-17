@@ -9,7 +9,7 @@ import (
 )
 type Student struct{
 	ID string `json:"id"`
-	Name string `json:"nmae"`
+	Name string `json:"name"`
 	Age int `json:"age"`
 	E_mail string `json:"e_mail"` 
 }
