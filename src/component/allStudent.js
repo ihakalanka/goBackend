@@ -12,30 +12,8 @@ export default function AllStudent() {
 
  
 
-  //get all student
-  function getStudent() {
-    axios
-      .get("/api/getData")
-      .then((res) => {
-        console.log(res.data);
-        setStudent(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   
-  }
-  function deleteStudent(id){
-    axios.delete("API")
-  
-    .then((res) => {
-        alert("Student Deleted");
-        getStudent();
-    })
-    .catch((err) => {
-        console.log(err);
-    })
-}
+ 
 
   return (
     <div className="container">

@@ -21,15 +21,7 @@ export default function AddStudent() {
 
     //create the post method to take frontend data to backend
     axios
-      .post("API", newStudent)
-      .then((res) => {
-        alert("Student Added..");
-        e.target.reset();
-      })
-      .catch((err) => {
-        alert("Something went wrong");
-        console.log("Error is " + err);
-      });
+    
   };
 
   return (
