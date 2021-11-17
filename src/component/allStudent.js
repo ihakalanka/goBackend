@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Table } from "react-bootstrap";
+import { Table, Button } from "react-bootstrap";
 import axios from "axios";
 
 export default function AllStudent() {
@@ -7,18 +7,36 @@ export default function AllStudent() {
 
   useEffect(() => {
     getStudent();
-  }, [])
+  }, []);
 
+<<<<<<< HEAD
   function getStudent(){
     axios.get("/api/getData")
+=======
+  //get all student
+  function getStudent() {
+    axios
+      .get("API")
+      .then((res) => {
+        console.log(res.data);
+        setStudent(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function deleteStudent(id){
+    axios.delete("API")
+>>>>>>> 09a1b6eada5a2d8454cb1e242c8ea293be6b6adb
     .then((res) => {
-      console.log(res.data);
-      setStudent(res.data);
+        alert("Student Deleted");
+        getStudent();
     })
     .catch((err) => {
-      console.log(err);
+        console.log(err);
     })
-  }
+}
 
   return (
     <div className="container">
@@ -34,20 +52,35 @@ export default function AllStudent() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-           
-          </tr>
-             <tr>
-            <td>2</td>
-            <td>new</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-           
-          </tr>
+          {student.map((student) => (
+            <tr key={student.id}>
+              <td>{student.indexNumber}</td>
+              <td>{student.name}</td>
+              <td>{student.age}</td>
+              <td>{student.email}</td>
+              {/* <td>
+                <Button variant="info" type="edit" onClick={updateStudent}>
+                  Edit
+                </Button>
+              </td> */}
+              <td>
+                <Button
+                  variant="danger"
+                  type="delete"
+                  onClick={() => {
+                    const confirmBox = window.confirm(
+                      "Do you really want to delete " + student.name
+                    );
+                    if (confirmBox === true) {
+                      deleteStudent(student.id);
+                    }
+                  }}
+                >
+                  Delete
+                </Button>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </Table>
     </div>
