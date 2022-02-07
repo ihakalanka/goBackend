@@ -42,7 +42,7 @@ func initDB() {
 		database.Config{
 			ServerName: "localhost:3306",
 			User:       "root",
-			Password:   "iha075",
+			Password:   "*****",
 			DB:         "studentdb",
 		}
 
