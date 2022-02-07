@@ -1,25 +1,55 @@
 package main
 
 import (
-	"encoding/json"
-	
+	"log"
 	"net/http"
 
-	"github.com/gorilla/mux"
-)
-type Student struct{
-	ID string `json:"id"`
-	Name string `json:"name"`
-	Age int `json:"age"`
-	E_mail string `json:"e_mail"` 
-}
+	controllers "test/controllers" 
 
-var student []Student
+	database "test/database"
+
+	studentstruct "test/studentStruct"
+
+	"github.com/rs/cors"
+
+	"github.com/gorilla/mux"
+	_ "github.com/jinzhu/gorm/dialects/mysql" //Required for MySQL dialect
+)
 
 func main() {
-student=append(student, Student{ID: "194005K",Name: "Akalanaka",Age: 23,E_mail: "Akalanaka@gmail.com"})
-	r :=mux.NewRouter()
-	
-	 http.ListenAndServe(":8080",r)
-   
+	initDB()
+	log.Println("Starting the HTTP server on port 8090")
+
+	router := mux.NewRouter().StrictSlash(true)
+
+	router.HandleFunc("/create", controllers.CreatePerson).Methods("POST")
+	router.HandleFunc("/get", controllers.GetAllPerson).Methods("GET")
+	router.HandleFunc("/get/{id}", controllers.GetPersonByID).Methods("GET")
+	router.HandleFunc("/update/{id}", controllers.UpdatePersonByID).Methods("PUT")
+	router.HandleFunc("/delete/{id}", controllers.DeletPersonByID).Methods("DELETE")
+
+	c := cors.New(cors.Options{
+        AllowedOrigins: []string{"*"},
+        AllowCredentials: true,
+    })
+
+	handler := c.Handler(router)
+	log.Fatal(http.ListenAndServe(":8090", handler))
+}
+
+func initDB() {
+	config :=
+		database.Config{
+			ServerName: "localhost:3306",
+			User:       "root",
+			Password:   "iha075",
+			DB:         "studentdb",
+		}
+
+	connectionString := database.GetConnectionString(config)
+	err := database.Connect(connectionString)
+	if err != nil {
+		panic(err.Error())
+	}
+	database.Migrate(&studentstruct.Student{})
 }
